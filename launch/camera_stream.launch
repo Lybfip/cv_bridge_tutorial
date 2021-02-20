@@ -1,0 +1,15 @@
+<launch>
+    <!-- ウェブビデオサーバー -->
+    <node pkg="web_video_server" type="web_video_server" name="web_video_server" />
+
+    <!-- カメラからの画像取得 -->
+    <node pkg="cv_camera" name="cv_camera" type="cv_camera_node" >
+        <param name="rate" value="10.0" />
+    </node>
+
+    <!-- 画像処理ノード -->
+    <node pkg="cv_bridge_tutorial" name="detect_target_f" type="cv_bridge_tutorial_node" output="screen" >
+        <param name="offset" value="0.51" />
+        <param name="camera" value="/cv_camera/image_raw" />
+    </node>
+</launch>
